@@ -1,0 +1,56 @@
+const express = require('express');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const User = require('../models/User');
+const router = express.Router();
+const jwtSecret = process.env.JWT_SECRET; 
+
+// Register user
+router.post('/register', async (req, res) => {
+  const { username, password } = req.body;
+
+  try {
+    let user = await User.findOne({ username });
+    if (user) return res.status(400).json({ message: 'User already exists' });
+
+    // Hash the password before saving
+    const salt = await bcrypt.genSalt(10);
+    user = new User({ username, password: await bcrypt.hash(password, salt) });
+    
+    await user.save();
+
+    const payload = { user: { id: user.id } };
+    jwt.sign(payload, jwtSecret, { expiresIn: '1h' }, (err, token) => {
+      if (err) throw err;
+      res.json({ token });
+    });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+// Login user
+router.post('/login', async (req, res) => {
+  console.log(req)
+ const { username, password } = req.body;
+ console.log(username, password)
+  
+
+  try {
+    const user = await User.findOne({ username });
+    if (!user) return res.status(400).json({ message: 'Invalid credentials'});
+
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) return res.status(400).json({ message: 'Invalid credentials' });
+
+    const payload = { user: { id: user.id } };
+    jwt.sign(payload, jwtSecret, { expiresIn: '1h' }, (err, token) => {
+      if (err) throw err;
+      res.json({ token });
+    });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+module.exports = router;
