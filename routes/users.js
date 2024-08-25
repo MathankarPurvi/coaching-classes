@@ -15,8 +15,9 @@ router.post('/register', async (req, res) => {
 
     // Hash the password before saving
     const salt = await bcrypt.genSalt(10);
-    user = new User({ username, password: await bcrypt.hash(password, salt) });
-    
+    const hashedPassword = await bcrypt.hash(password, salt);
+
+    user = new User({ username, password: hashedPassword });
     await user.save();
 
     const payload = { user: { id: user.id } };
@@ -31,10 +32,7 @@ router.post('/register', async (req, res) => {
 
 // Login user
 router.post('/login', async (req, res) => {
-  console.log(req)
- const { username, password } = req.body;
- console.log(username, password)
-  
+  const { username, password } = req.body;
 
   try {
     const user = await User.findOne({ username });
