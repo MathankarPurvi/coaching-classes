@@ -14,7 +14,7 @@ function App() {
       <div className="landing-page">
       <header className="header">
         <nav>
-          <div className="logo">CoachingFinder</div>
+          <div className="logo">AcademiaHub</div>
           <ul className="nav-links">
             <li><a href="#about">About Us</a></li>
             <li><a href="#features">Features</a></li>
@@ -55,7 +55,7 @@ function App() {
       </section>
 
       <footer className="footer">
-        <p>&copy; 2024 CoachingFinder. All Rights Reserved.</p>
+        <p>&copy; 2024 AcademiaHub. All Rights Reserved.</p>
       </footer>
     </div>
     </>
