@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Login.css'; // Assuming this file contains your styles
-
+import './App.css';
 function Signup() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
