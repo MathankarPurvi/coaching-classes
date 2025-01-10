@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './App.css';
 
 function Home() {
@@ -20,7 +21,7 @@ function Home() {
           <div className="hero-content">
             <h1>Find the Best Coaching Classes in Your City</h1>
             <p>Discover the top-rated coaching classes for your learning needs, all in one place.</p>
-            <a href="/login" className="cta-button">Start Your Search</a>
+            <Link to="/signup" className="cta-button">Start Your Search</Link>
           </div>
         </section>
 
