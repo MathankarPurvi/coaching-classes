@@ -1,19 +1,48 @@
 import React, { useState } from 'react';
 import './App.css';
 import './Login.css';
+
 function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    // Handle login logic here
+
+    try {
+      // Send a POST request to the backend
+      const response = await fetch('http://localhost:5000/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setSuccess('Login successful!');
+        setError(''); // Clear error message if successful
+        console.log(data); // Handle user data (e.g., store token)
+      } else {
+        setSuccess('');
+        setError(data.message || 'Invalid credentials. Please try again.');
+      }
+    } catch (err) {
+      setSuccess('');
+      setError('An error occurred. Please try again later.');
+    }
   };
 
   return (
     <div className="auth-page">
       <div className="auth-container">
         <h2>Login</h2>
+        {error && <p className="error-message">{error}</p>}
+        {success && <p className="success-message">{success}</p>}
         <form onSubmit={handleLogin}>
           <div className="form-group">
             <label htmlFor="username">Username</label>
