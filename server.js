@@ -2,6 +2,7 @@ const express = require('express');
 const connectDB = require('./config/db');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const { PORT } = require('./PORT');
 const app = express();
 
 
@@ -21,5 +22,4 @@ app.get('/', (req, res) => {
 app.use('/api/classes', require('./routes/classes'));
 app.use('/api/users', require('./routes/users'));
 
-const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

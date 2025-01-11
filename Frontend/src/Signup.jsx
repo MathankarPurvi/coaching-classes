@@ -10,33 +10,23 @@ function Signup() {
 
   const handleSignup = async (e) => {
     e.preventDefault();
-
     try {
-      // Send a POST request to the backend
-      const response = await fetch('http://localhost:5000/api/signup', {
+      const response = await fetch('http://localhost:5000/api/users/register', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password }),
       });
-
       const data = await response.json();
-
       if (response.ok) {
-        setSuccess('Account created successfully!');
-        setError(''); // Clear any error messages
-        setUsername('');
-        setPassword('');
+        alert('Signup successful');
       } else {
-        setSuccess('');
-        setError(data.message || 'Signup failed. Please try again.');
+        alert(data.message);
       }
     } catch (err) {
-      setSuccess('');
-      setError('An error occurred. Please try again later.');
+      console.error('Error during signup:', err);
     }
   };
+  
 
   return (
     <div className="auth-page">

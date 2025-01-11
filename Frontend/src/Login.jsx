@@ -1,19 +1,18 @@
 import React, { useState } from 'react';
-import './App.css';
+import { useNavigate } from 'react-router-dom';
 import './Login.css';
 
 function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const [success, setSuccess] = useState('');
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
 
     try {
-      // Send a POST request to the backend
-      const response = await fetch('http://localhost:5000/api/login', {
+      const response = await fetch('http://localhost:5000/api/users/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -24,16 +23,13 @@ function Login() {
       const data = await response.json();
 
       if (response.ok) {
-        setSuccess('Login successful!');
-        setError(''); // Clear error message if successful
-        console.log(data); // Handle user data (e.g., store token)
+        localStorage.setItem('token', data.token); // Store the JWT token
+        navigate('/dashboard'); // Redirect to Dashboard page
       } else {
-        setSuccess('');
-        setError(data.message || 'Invalid credentials. Please try again.');
+        setError(data.message || 'Login failed');
       }
     } catch (err) {
-      setSuccess('');
-      setError('An error occurred. Please try again later.');
+      setError('An error occurred. Please try again.');
     }
   };
 
@@ -41,8 +37,6 @@ function Login() {
     <div className="auth-page">
       <div className="auth-container">
         <h2>Login</h2>
-        {error && <p className="error-message">{error}</p>}
-        {success && <p className="success-message">{success}</p>}
         <form onSubmit={handleLogin}>
           <div className="form-group">
             <label htmlFor="username">Username</label>
@@ -68,6 +62,7 @@ function Login() {
           </div>
           <button type="submit">Login</button>
         </form>
+        {error && <p className="error-msg">{error}</p>}
         <div className="auth-toggle">
           <p>Don't have an account? <a href="/signup">Sign up here</a></p>
         </div>

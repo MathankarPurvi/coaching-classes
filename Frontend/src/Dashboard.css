@@ -1,0 +1,43 @@
+/* Ensure the dashboard container takes the full viewport height and width */
+.dashboard-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; /* Full height of the viewport */
+    width: 100%; /* Full width of the viewport */
+    background-color: #f3f4f6;
+    margin: 0; /* Remove any default margin */
+    padding: 0; /* Remove any default padding */
+    box-sizing: border-box; /* Ensure padding doesn't affect width/height */
+    text-align: center;
+  }
+  
+  .dashboard-container h1 {
+    font-size: 2.5rem;
+    color: #1a202c;
+    margin-bottom: 10px;
+  }
+  
+  .dashboard-container p {
+    font-size: 1.2rem;
+    margin: 10px 0;
+    color: #4a5568;
+  }
+  
+  .logout-btn {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #3182ce;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .logout-btn:hover {
+    background-color: #2b6cb0;
+  }
+  
