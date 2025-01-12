@@ -1,43 +1,118 @@
-/* Ensure the dashboard container takes the full viewport height and width */
-.dashboard-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh; /* Full height of the viewport */
-    width: 100%; /* Full width of the viewport */
-    background-color: #f3f4f6;
-    margin: 0; /* Remove any default margin */
-    padding: 0; /* Remove any default padding */
-    box-sizing: border-box; /* Ensure padding doesn't affect width/height */
-    text-align: center;
-  }
-  
-  .dashboard-container h1 {
-    font-size: 2.5rem;
-    color: #1a202c;
-    margin-bottom: 10px;
-  }
-  
-  .dashboard-container p {
-    font-size: 1.2rem;
-    margin: 10px 0;
-    color: #4a5568;
-  }
-  
-  .logout-btn {
-    padding: 10px 20px;
-    font-size: 1rem;
-    background-color: #3182ce;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 20px;
-    transition: background-color 0.3s ease;
-  }
-  
-  .logout-btn:hover {
-    background-color: #2b6cb0;
-  }
-  
+/* General Styles */
+body {
+  margin: 0;
+  font-family: "Arial", sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+}
+.dashboard-container{
+  width: 100%;
+  height: 100%;
+}
+/* Navbar Styles */
+.navbar {
+  display: flex;
+  align-items: center;
+  padding: 15px 30px;
+  background-color: #004aad;
+  color: white;
+}
+
+.navbar .logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.navbar .nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.navbar .nav-links a {
+  text-decoration: none;
+  color: white;
+  font-size: 1rem;
+}
+
+.navbar .logout-btn {
+  background-color: #f04a5b;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Welcome Banner */
+.welcome-banner {
+  text-align: center;
+  padding: 50px 20px;
+  background: linear-gradient(to right, #0066cc, #0099ff);
+  color: white;
+}
+
+.welcome-banner h2 {
+  font-size: 2.5rem;
+}
+
+.welcome-banner p {
+  font-size: 1.2rem;
+  margin-top: 10px;
+}
+
+/* City Search Section */
+.city-search {
+  margin: 30px auto;
+  text-align: center;
+}
+
+.city-search input {
+  padding: 10px;
+  font-size: 1rem;
+  width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.city-search p {
+  margin-top: 10px;
+  font-size: 1rem;
+}
+
+/* Classes Sections */
+.classes-list {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 20px;
+}
+
+.class-card {
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  width: 250px;
+  padding: 15px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.class-card h4 {
+  font-size: 1.2rem;
+  color: #004aad;
+}
+
+.class-card p {
+  font-size: 1rem;
+  margin-top: 5px;
+}
+
+/* Section Titles */
+h3 {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 1.8rem;
+  color: #004aad;
+}
